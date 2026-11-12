@@ -1,0 +1,59 @@
+:root{--bg:#f5f7fb;--ink:#19243a;--mut:#526078;--line:#d7deea;--blue:#2563eb;--ok:#16a34a;--warn:#d97706;--bad:#dc2626}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 "Segoe UI",system-ui,-apple-system,Roboto,sans-serif}
+.app{display:grid;grid-template-columns:230px 1fr;min-height:100vh}
+.side{background:#fff;border-right:1px solid var(--line);padding:20px 14px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:4px}
+.brand{display:flex;gap:10px;align-items:center;margin-bottom:18px}
+.brand b{width:36px;height:36px;border-radius:10px;background:var(--blue);color:#fff;display:grid;place-items:center;font-size:18px}
+small,.sub,.head p{color:var(--mut);display:block;margin:0}
+nav{display:flex;flex-direction:column;gap:2px}
+nav a{padding:9px 12px;border-radius:8px;color:var(--mut);text-decoration:none;font-weight:600}
+nav a:hover,nav a.on{background:#e8efff;color:var(--blue)}
+.conn{margin-top:auto;display:flex;gap:10px;align-items:center;font-size:12px}
+.conn i{width:10px;height:10px;border-radius:50%;background:#94a3b8;flex:none}
+.conn i.ok{background:var(--ok)}.conn i.err{background:var(--bad)}
+main{padding:24px 28px;min-width:0}
+.top{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:flex-end;margin-bottom:20px}
+h1{margin:0;font-size:26px}h2{margin:0;font-size:18px}h3{margin:0 0 10px;font-size:15px}
+.actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.actions label{color:var(--mut);font-weight:700;font-size:13px}
+select,input,.btn{padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);font:inherit}
+select:focus-visible,input:focus-visible,.btn:focus-visible,nav a:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.btn{cursor:pointer;font-weight:600}.btn:hover{background:#f1f5fb}.btn:disabled{opacity:.5;cursor:default}
+.btn.primary{background:var(--blue);border-color:var(--blue);color:#fff}.btn.primary:hover{background:#1d4fd8}
+.btn.sm{padding:5px 10px}
+section{margin-bottom:28px;scroll-margin-top:16px}
+.head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:12px;gap:12px}
+.live{font-size:12px;font-weight:700;color:var(--ok)}
+.live i{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--ok);margin-right:4px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px}
+.card,.panel{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px}
+.card span{color:var(--mut);font-weight:600;font-size:13px}
+.card strong{display:block;font-size:28px;line-height:1.2;margin:4px 0}
+.bar{height:8px;background:#e5eaf3;border-radius:99px;overflow:hidden}
+.bar span{display:block;height:100%;background:var(--blue);width:0;transition:width .4s}
+.bar span.ok{background:var(--ok)}.bar span.warn{background:var(--warn)}.bar span.bad{background:var(--bad)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:14px}
+.chart{height:300px;position:relative}
+.alert{background:#fef2f2;border:1px solid #fecaca;color:#991b1b;padding:10px 14px;border-radius:8px;margin-bottom:16px}
+.hidden{display:none}
+.toolbar,.foot{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.toolbar{margin-bottom:12px}.toolbar input{flex:1;min-width:200px}
+.foot{justify-content:space-between;margin-top:12px;color:var(--mut)}
+.page-foot{margin-top:8px;font-size:12px}
+.scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{padding:9px 10px;text-align:left;border-bottom:1px solid #edf1f7;white-space:nowrap}
+th{color:var(--mut);cursor:pointer;background:#f8fafd;user-select:none}
+.n{text-align:right}.msg{text-align:center;color:var(--mut);padding:24px}
+.pill{padding:2px 9px;border-radius:99px;font-weight:700;font-size:12px;background:#eef2f8}
+.pill.ok{background:#dcfce7;color:#166534}.pill.warn{background:#fef3c7;color:#92400e}.pill.bad{background:#fee2e2;color:#991b1b}
+.tag{padding:2px 8px;border-radius:6px;background:#eef2f8;font-size:12px}.tag.off{background:#e5e7eb;color:#6b7280}
+.xt{display:none}
+.exporting .xt{display:block}.exporting .scroll{overflow:visible}.exporting .toolbar,.exporting .foot{display:none}
+@media(max-width:860px){
+  .app{grid-template-columns:1fr}
+  .side{position:static;height:auto;flex-direction:row;flex-wrap:wrap;align-items:center}
+  .brand{margin:0}nav{flex-direction:row;flex-wrap:wrap}.conn{margin:0 0 0 auto}
+  main{padding:16px}.grid2{grid-template-columns:1fr}.chart{height:260px}
+}

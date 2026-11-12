@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f5f7fb">
+<title>UE POS Dashboard | AHASS Sumsel</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js" defer></script>
+<script src="script.js" defer></script>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <div class="brand"><b>U</b><div><strong>UE POS</strong><small>AHASS Operations</small></div></div>
+    <nav>
+      <a href="#overview" class="on">▦ Overview</a>
+      <a href="#trends">⌁ Trends</a>
+      <a href="#ranking">≡ POS ranking</a>
+      <a href="#history">⌁ POS history</a>
+    </nav>
+    <div class="conn"><i id="dot"></i><div><strong id="conn">Connecting…</strong><small id="upd">Waiting for data</small></div></div>
+  </aside>
+
+  <main>
+    <header class="top">
+      <div><h1>UE POS Dashboard</h1><p class="sub">Unit entry, target and achievement of every POS Service.</p></div>
+      <div class="actions">
+        <label for="period">Periode</label><select id="period"></select>
+        <button id="refresh" class="btn primary">↻ Refresh data</button>
+      </div>
+    </header>
+    <div id="alert" class="alert hidden" role="status"></div>
+
+    <section id="overview">
+      <div class="head"><div><h2>Executive overview</h2><p id="ov-sub">—</p></div><span class="live"><i></i> Live data</span></div>
+      <div class="kpis">
+        <article class="card"><span>Total target</span><strong id="k-target">—</strong><small>Unit entry targeted</small></article>
+        <article class="card"><span>Total UE</span><strong id="k-ue">—</strong><small>Unit entry realised</small></article>
+        <article class="card"><span>Achievement</span><strong id="k-acv">—</strong><div class="bar"><span id="k-bar"></span></div></article>
+        <article class="card"><span>Gap to target</span><strong id="k-gap">—</strong><small>Units remaining</small></article>
+        <article class="card"><span>POS below 100%</span><strong id="k-below">—</strong><small id="k-below-n">Outlets below target</small></article>
+      </div>
+    </section>
+
+    <section id="trends">
+      <div class="head"><div><h2>Performance trends</h2><p>Daily movement and dealer-group comparison</p></div></div>
+      <div class="grid2">
+        <article class="panel"><h3>Daily UE (all POS)</h3><div class="chart"><canvas id="c-daily"></canvas></div></article>
+        <article class="panel"><h3>Dealer group achievement</h3><div class="chart"><canvas id="c-group"></canvas></div></article>
+      </div>
+    </section>
+
+    <section id="ranking">
+      <div class="head"><div><h2>POS ranking</h2><p>Search, filter and sort the selected period</p></div><span id="count" class="pill">0 POS</span></div>
+      <div class="panel" id="rank-panel">
+        <h3 id="x-title" class="xt"></h3>
+        <div class="toolbar">
+          <input id="q" type="search" placeholder="Search POS, dealer group, AHASS no…">
+          <select id="f-group"><option value="">All dealer groups</option></select>
+          <select id="f-kelas"><option value="">All classes</option><option>High</option><option>Middle</option><option>Low</option></select>
+          <select id="f-status"><option value="">All achievement levels</option><option value="below">Below 100%</option><option value="on">100% or above</option></select>
+          <button id="export" class="btn">Export JPG</button>
+        </div>
+        <div class="scroll"><table><thead><tr id="thead"></tr></thead><tbody id="tbody"><tr><td colspan="10" class="msg">Loading sheet data…</td></tr></tbody></table></div>
+        <div class="foot"><span id="summary"></span><div><button id="prev" class="btn sm">Previous</button> <span id="page">Page 1</span> <button id="next" class="btn sm">Next</button></div></div>
+      </div>
+    </section>
+
+    <section id="history">
+      <div class="head"><div><h2>POS history</h2><p>Monthly UE against target for one POS</p></div></div>
+      <div class="panel">
+        <div class="toolbar"><select id="h-select"><option value="">Select a POS…</option></select><span id="h-note" class="sub"></span></div>
+        <div class="chart"><canvas id="c-hist"></canvas></div>
+      </div>
+    </section>
+
+    <footer class="foot page-foot"><span>UE POS Dashboard</span><span>Source: Google Sheets · read-only</span><span id="f-refresh"></span></footer>
+  </main>
+</div>
+</body>
+</html>
